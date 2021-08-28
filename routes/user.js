@@ -76,7 +76,7 @@ route.post("/createHymn", async (req, res) => {
   try {
     let hymnal = await Hymnal.findOne({ HymneNo });
     if (hymnal) {
-      res.status("500").json({ msg: "hymn number already exists" });
+      return res.status("500").json({ msg: "hymn number already exists" });
     }
     hymnal = new Hymnal({ HymneNo, title, body, category });
     await hymnal.save();
