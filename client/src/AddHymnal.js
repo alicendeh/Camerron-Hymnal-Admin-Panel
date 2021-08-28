@@ -100,7 +100,7 @@ export default function AddHymnal() {
             style={{
               padding: 15,
               width: "35vw",
-              height: "45vh",
+              height: "31vh",
             }}
             type="body"
             name="body"

@@ -74,7 +74,11 @@ module.exports = route;
 route.post("/createHymn", async (req, res) => {
   const { title, body, HymneNo, category } = req.body;
   try {
-    let hymnal = new Hymnal({ HymneNo, title, body, category });
+    let hymnal = await Hymnal.findOne({ HymneNo });
+    if (hymnal) {
+      res.status("500").json({ msg: "hymn number already exists" });
+    }
+    hymnal = new Hymnal({ HymneNo, title, body, category });
     await hymnal.save();
     res.json({ hymnal });
   } catch (error) {
